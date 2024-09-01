@@ -1,39 +1,21 @@
 import asyncio
 
-import aiohttp
-
 from typing import List, Optional, Dict, Any
 
 from argument_parser import argument_parser
 from date_list import date_list
 from output_renderer import output_renderer
 from settings import URL_BASE
+from url_connection import url_connection
 
-dates = date_list(argument_parser())
+cmd_args = argument_parser()
+dates = date_list(cmd_args[0])
 currencies = ['EUR', 'USD'] 
+currencies.extend(cmd_args[1])
+print(currencies)
 
 
-async def url_connection(url: str) -> dict | None:
-    '''
-    Fetches a data dict from the remote server.
-    '''
-    async with aiohttp.ClientSession() as session:
-        try:
-            async with session.get(url) as response:
-                if response.status == 200:
-                    return await response.json()
-                else:
-                    print(f"Error status: {response.status} for {url}.")
-                    return None
-        except aiohttp.ClientConnectorError as err:
-            print(f'Connectio error: {url}', str(err))
-            return None
-        except aiohttp.ClientError as err:
-            print(f"Client error: {url}", str(err))
-            return None
-        except asyncio.TimeoutError as err:
-            print(f"Timeout error: {url}", str(err))
-            return None
+
     
 
 async def fetch_all_dates(list_of_dates: list, url: str) -> List[Optional[Dict[str, Any]]]:
