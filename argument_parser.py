@@ -50,7 +50,7 @@ def check_currencies(currencies_list: list) -> list:
     return valid_currencies    
 
 
-def argument_parser() -> int:
+def argument_parser() -> list:
     '''
     Parses the comand line input.
     '''

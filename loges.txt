@@ -1,0 +1,4 @@
+2024-09-01 16:49:18,360 - INFO - server listening on 127.0.0.1:5000
+2024-09-01 16:49:30,421 - INFO - connection open
+2024-09-01 16:49:30,422 - INFO - ('127.0.0.1', 48580) connects
+2024-09-01 16:49:35,073 - INFO - was asked exchange rate!

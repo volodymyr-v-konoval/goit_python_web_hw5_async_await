@@ -1,18 +1,18 @@
 import asyncio
+import itertools
 
 from typing import List, Optional, Dict, Any
 
 from argument_parser import argument_parser
 from date_list import date_list
 from output_renderer import output_renderer
-from settings import URL_BASE
+from settings import CURRENCIES, URL_BASE
 from url_connection import url_connection
 
 cmd_args = argument_parser()
 dates = date_list(cmd_args[0])
-currencies = ['EUR', 'USD'] 
-currencies.extend(cmd_args[1])
-print(currencies)
+currencies = list(dict.fromkeys(itertools.chain(CURRENCIES, cmd_args[1])))
+# print(currencies)
 
 
 
